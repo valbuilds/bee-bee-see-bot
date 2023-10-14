@@ -22,7 +22,7 @@ class IncompetencyA(app_commands.Group):
     @app_commands.describe(description="Describe the blooper.")
     @app_commands.describe(attachment="Image/video of the blooper.")
     async def blooper(self, interaction: discord.Interaction, time: str, description: str, attachment: Optional[discord.Attachment]):
-        c = interaction.client.get_guild(settings.Config.home_guild_id).get_channel(settings.Config.bloopers_channel)
+        c = interaction.client.get_guild(settings.Config.main_guild_id).get_channel(settings.Config.bloopers_channel)
         e = discord.Embed(title="Blooper", description=f"Reported by: {interaction.user.mention}", colour=discord.Colour.brand_red())
         t = await SharedMethods.timestamp_check(t=time)
         e.add_field(name="Time", value=t)
@@ -50,7 +50,7 @@ class Incompetency(commands.Cog):
                 t = await SharedMethods.timestamp_check(t=self.time)
                 self.e.add_field(name="Time", value=t)
                 self.e.add_field(name="Description", value=self.description)
-                c = interaction.client.get_guild(settings.Config.home_guild_id).get_channel(settings.Config.bloopers_channel)
+                c = interaction.client.get_guild(settings.Config.main_guild_id).get_channel(settings.Config.bloopers_channel)
                 self.e.description = f"Reported by: {interaction.user.mention}"
                 r = await c.send(embed=self.e)
                 await r.create_thread(name=f"Thread for {interaction.user.display_name}", reason="Blooper reported")
