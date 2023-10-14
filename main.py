@@ -4,7 +4,7 @@ import settings
 import datetime
 
 def run():
-    a = discord.Activity(type=discord.ActivityType.watching, name="the BBC News Channel")
+    a = discord.Activity(type=discord.ActivityType.watching, name="b.help | v0.3")
     bot = commands.Bot(command_prefix='b.', activity=a, intents=discord.Intents.all())
 
     @bot.event
@@ -19,7 +19,7 @@ def run():
             await message.channel.send("<a:pepeWut:1110185838463160420>")
         elif message.author.bot == False and '<:IDIOT:1109489652555063296>' in message.clean_content or message.clean_content == '<:IDIOT:1109489652555063296>':
             await message.add_reaction('<:IDIOT:1109489652555063296>')
-        elif message.author.bot == True and message.channel == bot.get_guild(1016626731785928715).get_channel(1058443175427047555) and message.embeds is not None:
+        elif message.author.bot == True and message.channel == bot.get_guild(settings.Config.home_guild_id).get_channel(settings.Config.suggestions_channel) and message.embeds is not None:
             await message.create_thread(name=message.embeds[0].description[:100], reason="Suggestion")
         else:
             await bot.process_commands(message)
