@@ -31,7 +31,7 @@ class IncompetencyA(app_commands.Group):
             if attachment.content_type.startswith('image') or attachment.content_type.startswith('video'):
                 e.set_image(url=attachment.proxy_url)
         cm = await c.send(embed=e)
-        await cm.create_thread(name=f"Thread for {interaction.user.display_name}", reason="Blooper reported")
+        await cm.create_thread(name=description[:100], reason="Blooper reported")
         await interaction.response.send_message(content=cm.jump_url, ephemeral=True)
 
 class Incompetency(commands.Cog):
@@ -53,7 +53,7 @@ class Incompetency(commands.Cog):
                 c = interaction.client.get_guild(settings.Config.main_guild_id).get_channel(settings.Config.bloopers_channel)
                 self.e.description = f"Reported by: {interaction.user.mention}"
                 r = await c.send(embed=self.e)
-                await r.create_thread(name=f"Thread for {interaction.user.display_name}", reason="Blooper reported")
+                await r.create_thread(name=self.description[:100], reason="Blooper reported")
                 return await interaction.response.send_message(embed=self.e)
 
         class ShowBlooperModal(discord.ui.View):
