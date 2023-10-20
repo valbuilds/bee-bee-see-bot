@@ -21,7 +21,7 @@ async def on_ready():
     await bot.load_extension("ext.events.suggestions")
     await bot.load_extension("ext.commands.bloopers")
     # set status
-    bot.change_presence(status=discord.Status.online, activity=activity)
+    await bot.change_presence(status=discord.Status.online, activity=activity)
     # send info in log
     logger.info("bot redy :)")
 
