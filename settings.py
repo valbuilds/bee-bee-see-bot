@@ -16,14 +16,14 @@ cdata =  json.load(cfile)
 class Config:
     # enable debug version
     debug: bool = True
+    # token
+    token: str = os.getenv('token')
     # debug-specific config
     class Debug:
-        token: str = os.getenv('debugtoken')
         guildid: int = cdata['debug']['guildid']
         suggestionchannelid: int = cdata['debug']['suggestionchannelid']
     # main-specific config
     class Main:
-        token: str = os.getenv('maintoken')
         guildid: int = cdata['main']['guildid']
         suggestionchannelid: int = cdata['main']['suggestionchannelid']
 

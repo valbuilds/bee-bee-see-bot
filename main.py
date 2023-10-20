@@ -36,11 +36,5 @@ async def sync(ctx: commands.Context):
         await bot.tree.sync()
     return await ctx.reply(content="Commands synced!", mention_author=False)
 
-# token fuckery
-if settings.Config.debug:
-    token = settings.Config.Debug.token
-else:
-    token = settings.Config.Main.token
-
 # run bot
-bot.run(token, root_logger=False)
+bot.run(settings.Config.token, root_logger=False)
