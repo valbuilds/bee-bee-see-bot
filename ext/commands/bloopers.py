@@ -23,18 +23,11 @@ async def check_time(time: str):
             return False
 
 # turn text into timestamp
-def texttime_to_timestamp(timee: str, type: str):
-    allowed_types = ["d", "D", "t", "T", "f", "F", "R", "."]
-    if type not in allowed_types:
-        raise Exception("Make sure that the 'type' field is in the allowed types.")
-    else:
-        now = datetime.datetime.now(pytz.timezone('Europe/London'))
-        t = timee.split(":")
-        timea = datetime.datetime(now.year, now.month, now.day, int(t[0]), int(t[1]), 0, 0)
-        if type == ".":
-            return str(int(time.mktime(timea.timetuple())))
-        else:
-            return "<t:" + str(int(time.mktime(timea.timetuple()))) + ":" + type + ">"
+def texttime_to_timestamp(timee: str):
+    now = datetime.datetime.now(pytz.timezone('Europe/London'))
+    t = timee.split(":")
+    timea = datetime.datetime(now.year, now.month, now.day, int(t[0]) + 6, int(t[1]), 0, 0)
+    return str(int(time.mktime(timea.timetuple())))
 
 # cog
 class Bloopers(commands.Cog):
@@ -55,13 +48,9 @@ class Bloopers(commands.Cog):
         istime = await check_time(time)
         if not istime:
             return await ctx.reply(content="Please make sure to provide a valid time!", delete_after=60, mention_author=False)
-        else:
-            try:
-                t = await texttime_to_timestamp(time, "f")
-            except Exception:
-                return await ctx.reply(content="Please make sure to provide a valid time! If you're sure you have, please contact <@396723826232262656>", delete_after=60, mention_author=False, allowed_mentions=False)
+        t = texttime_to_timestamp(time)
         if t != None:
-            embed.add_field(name="Time", value=t)
+            embed.add_field(name="Time", value=f"<t:{t}:f>")
         embed.add_field(name="Description", value=" ".join(description))
         
         return await ctx.reply(embed=embed, mention_author=False)
