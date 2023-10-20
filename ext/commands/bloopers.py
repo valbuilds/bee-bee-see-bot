@@ -58,4 +58,4 @@ class Bloopers(commands.Cog):
 # add cog to bot
 async def setup(bot: commands.Bot):
     await bot.add_cog(Bloopers(bot))
-    logger.info("ext.events.suggestions okay")
+    logger.info("ext.events.blooper okay")
