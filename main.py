@@ -11,6 +11,12 @@ logger = settings.logging.getLogger("bot")
 # make bot
 bot = commands.Bot(command_prefix=".", intents=discord.Intents.all(), status=discord.Status.dnd)
 
+# prefix stuff
+if settings.Config.debug:
+    bot.command_prefix = "n."
+else:
+    bot.command_prefix = "b."
+
 # activity
 activity = discord.Activity(type=discord.ActivityType.watching, name="the BBC News channel")
 
@@ -25,7 +31,7 @@ async def on_ready():
     # send info in log
     logger.info("bot redy :)")
 
-@bot.command("My source code!!!", description="I'm hosted on Google Cloud and my code is hosted on Github!")
+@bot.command(brief="My source code!!!", description="I'm hosted on Google Cloud and my code is hosted on Github!")
 async def source(ctx: commands.Context):
     return await ctx.reply(content="https://github.com/valbuilds/bee-bee-see-bot", mention_author=False)
 
