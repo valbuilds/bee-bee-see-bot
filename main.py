@@ -45,7 +45,12 @@ async def sync(ctx: commands.Context):
 @bot.command(brief="that bin be floating tho", description="silly little bin floating video :)))))")
 async def bin(ctx: commands.Context):
     async with ctx.typing():
-        await ctx.reply(file=discord.File("src/bin.mp4"), mention_author=False)
+        return await ctx.reply(file=discord.File("src/bin.mp4"), mention_author=False)
+
+@bot.command(breif="FACTS ON BAGUETTES", description="Christian Frazier brings you some very cool facts on baguettes!")
+async def baguette(ctx: commands.Context):
+    async with ctx.typing():
+        return await ctx.reply(file=discord.File("src/baguette.mp4"))
 
 # run bot
 bot.run(settings.Config.token, root_logger=False)
