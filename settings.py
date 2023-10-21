@@ -15,7 +15,7 @@ cdata =  json.load(cfile)
 # access config using this
 class Config:
     # enable debug version
-    debug: bool = True
+    debug: bool = False
     # token
     token: str = os.getenv('token')
     # debug-specific config
