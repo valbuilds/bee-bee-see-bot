@@ -42,5 +42,10 @@ async def sync(ctx: commands.Context):
         await bot.tree.sync()
     return await ctx.reply(content="Commands synced!", mention_author=False)
 
+@bot.command(brief="that bin be floating tho", description="silly little bin floating video :)))))")
+async def bin(ctx: commands.Context):
+    async with ctx.typing():
+        await ctx.reply(file=discord.File("src/bin.mp4"), mention_author=False)
+
 # run bot
 bot.run(settings.Config.token, root_logger=False)
