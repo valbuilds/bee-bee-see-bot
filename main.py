@@ -52,10 +52,10 @@ async def bin(ctx: commands.Context):
 @bot.command(breif="FACTS ON BAGUETTES", description="Christian Frazier brings you some very cool facts on baguettes!")
 async def baguette(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file=discord.File("src/baguette.mp4"))
+        return await ctx.reply(file=discord.File("src/baguette.mp4"), mention_author=False)
 
 @bot.command(breif="hoo™️ and its subsidiaries :)", description="hoo™️")
-async def hoo(ctx: commands.Context, subsidiary: Optional[str]):
+async def hoo(ctx: commands.Context, subsidiary: str):
     async with ctx.typing():
         time.sleep(5)
         embed = discord.Embed(title="the hoo™ corporation and its subsidiaries", description="hoocorder™\nhooter™\nhoocord™\nhoolite™\nhoolink™\nhoogo™\nhooplayer™\nhootube™\nhoopedia™\nhooview™\nhootv™\nhooair™\nhooimageremovebgpreview_1™\nhoolabs™\nhoobot™\nhooradio™\nhooPhone™\nhooflix™\nhooNLI™\nhoopay™\nhooparty™\nhoonews™\nhoopolice™\nhoomusic™", colour=0xFF0500)
