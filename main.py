@@ -65,7 +65,7 @@ async def hoo(ctx: commands.Context, subsidiary: str):
 @bot.command(breif="dont mess with maryam >:)", description="maryam doesn't mess around!")
 async def dontmess(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file="src/dontmesswithmaryam.mp4", mention_author=False)
+        return await ctx.reply(file=discord.File("src/dontmesswithmaryam.mp4"), mention_author=False)
 
 # run bot
 bot.run(settings.Config.token, root_logger=False)
