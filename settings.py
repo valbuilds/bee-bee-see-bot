@@ -1,6 +1,7 @@
 # import modules
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 import json
 
@@ -9,23 +10,27 @@ import logging
 from logging.config import dictConfig
 
 # make config accessible
-cfile = open('config.json')
-cdata =  json.load(cfile)
+cfile = open("config.json")
+cdata = json.load(cfile)
+
 
 # access config using this
 class Config:
     # enable debug version
     debug: bool = True
     # token
-    token: str = os.getenv('token')
+    token: str = os.getenv("token")
+
     # debug-specific config
     class Debug:
-        guildid: int = cdata['debug']['guildid']
-        suggestionchannelid: int = cdata['debug']['suggestionchannelid']
+        guildid: int = cdata["debug"]["guildid"]
+        suggestionchannelid: int = cdata["debug"]["suggestionchannelid"]
+
     # main-specific config
     class Main:
-        guildid: int = cdata['main']['guildid']
-        suggestionchannelid: int = cdata['main']['suggestionchannelid']
+        guildid: int = cdata["main"]["guildid"]
+        suggestionchannelid: int = cdata["main"]["suggestionchannelid"]
+
 
 # logging stuff
 loggingconfig = {
