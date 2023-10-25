@@ -33,6 +33,7 @@ async def on_ready():
     # load extensions
     await bot.load_extension("ext.events.suggestions")
     await bot.load_extension("ext.commands.bloopers")
+    # await bot.load_extension("ext.commands.utility")
     # set status
     await bot.change_presence(status=discord.Status.online, activity=activity)
     # send info in log
@@ -57,7 +58,7 @@ async def source(ctx: commands.Context):
 async def sync(ctx: commands.Context):
     async with ctx.typing():
         await bot.tree.sync()
-    return await ctx.reply(content="Commands synced!", mention_author=False)
+        return await ctx.reply(content="Commands synced!", mention_author=False)
 
 
 @bot.command(
@@ -80,25 +81,19 @@ async def baguette(ctx: commands.Context):
         )
 
 
-@bot.command(breif="hoo™️ and its subsidiaries :)", description="hoo™️")
-async def hoo(ctx: commands.Context, subsidiary: str):
-    async with ctx.typing():
-        time.sleep(5)
-        embed = discord.Embed(
-            title="the hoo™ corporation and its subsidiaries",
-            description="hoocorder™\nhooter™\nhoocord™\nhoolite™\nhoolink™\nhoogo™\nhooplayer™\nhootube™\nhoopedia™\nhooview™\nhootv™\nhooair™\nhooimageremovebgpreview_1™\nhoolabs™\nhoobot™\nhooradio™\nhooPhone™\nhooflix™\nhooNLI™\nhoopay™\nhooparty™\nhoonews™\nhoopolice™\nhoomusic™",
-            colour=0xFF0500,
-        )
-        r = await ctx.reply(embed=embed, mention_author=False)
-        return await r.reply(
-            content="Need the hoo™️ council? No you don't.",
-            file=discord.File("src/hoo.mov"),
-            mention_author=False,
-        )
+@bot.tree.command(description="hoo™️ and its subsidiaries :)")
+async def hoo(interaction: discord.Interaction):
+    embed = discord.Embed(
+        title="the hoo™ corporation and its subsidiaries",
+        description="hoocorder™\nhooter™\nhoocord™\nhoolite™\nhoolink™\nhoogo™\nhooplayer™\nhootube™\nhoopedia™\nhooview™\nhootv™\nhooair™\nhooimageremovebgpreview_1™\nhoolabs™\nhoobot™\nhooradio™\nhooPhone™\nhooflix™\nhooNLI™\nhoopay™\nhooparty™\nhoonews™\nhoopolice™\nhoomusic™",
+        colour=0xFF0500,
+    )
+    embed.set_image(url="https://cdn.discordapp.com/attachments/1016691910158590032/1163233026797486120/youtube-VG5WkQEybY0.mov?ex=65480ead&is=653599ad&hm=e41d8ce15b0b15486063ec78909247877c2d3c118c7c3852ada80e1b45fd8e10&")
+    r = await interaction.response.send_message(embed=embed, ephemeral=True)
 
 
 @bot.command(
-    breif="dont mess with maryam >:)", description="maryam doesn't mess around!"
+    breif="dont mess with maryam!!!!!", description="maryam doesn't mess around!"
 )
 async def dontmess(ctx: commands.Context):
     async with ctx.typing():
@@ -106,6 +101,12 @@ async def dontmess(ctx: commands.Context):
             file=discord.File("src/dontmesswithmaryam.mp4"), mention_author=False
         )
 
+@bot.command(
+    breif="utter chaos :)",description="real bbc news countdown 2034"
+)
+async def chaos(ctx: commands.Context):
+    async with ctx.typing():
+        return await ctx.reply(content="[.](https://cdn.discordapp.com/attachments/1016691910158590032/1166740804728000592/help.mp4?ex=654b970c&is=6539220c&hm=1b8669e00b9a9e715f37092cc95b1ae8529e3a9d4f789c7ba987b6595e2d8289&)", mention_author=False)
 
 # run bot
 bot.run(settings.Config.token, root_logger=False)
