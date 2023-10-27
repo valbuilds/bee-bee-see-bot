@@ -36,6 +36,16 @@ class Suggestions(commands.Cog):
         ):
             # creates a thread on the message :)
             await message.create_thread(name=message.embeds[0].description[:100])
+    
+    @commands.Cog.listener()
+    async def on_reaction_add(self, reaction: discord.Reaction, user: [discord.Member, discord.User]):
+        if user.bot == False:
+            msg = reaction.message
+            for r in msg.reactions:
+                if r != reaction:
+                    async for u in r.users():
+                        if u == user:
+                            await r.remove(u)
 
     @commands.group(breif="Suggestion commands", description="Suggestion commands")
     async def suggest(self, ctx: commands.Context):
@@ -55,22 +65,17 @@ class Suggestions(commands.Cog):
         description = " ".join(feature)
         suggestion_id = random.randrange(1001, 10001)
         embed = discord.Embed(
-            title=f"Suggestion #{suggestion_id}",
             description=description,
             colour=discord.Colour.blurple(),
         )
-        embed.add_field(name="Suggested by:", value=f"{ctx.author.mention}")
-        embed.add_field(
-            name="Implemented:",
-            value="No.\nIf this is wrong, please contact a staff member.",
-        )
+        embed.set_author(icon_url=ctx.author.display_avatar, name=ctx.author.display_name)
         channel = self.bot.get_guild(conf.guildid).get_channel(conf.suggestionchannelid)
         async with ctx.typing():
             msg = await channel.send(embed=embed)
-            await msg.add_reaction("✅")
-            await msg.add_reaction("🤷")
-            await msg.add_reaction("❎")
-            return await ctx.reply(content=f"I've sent your suggestion to {msg.channel.mention}.")
+            await msg.add_reaction("<:agree:1167505718535008256>")
+            await msg.add_reaction("<:neutral:1167505790723170414>")
+            await msg.add_reaction("<:disagree:1167505754098507817>")
+            return await ctx.reply(content=f"I've sent your suggestion to {msg.channel.mention}.", mention_author=False)
 
     @suggest.command(
         breif="(STAFF) Note that a server suggestion has been implemented.", description="(STAFF) Note that a server suggestion has been implemented."
@@ -82,11 +87,10 @@ class Suggestions(commands.Cog):
                 if message.channel.id != conf.suggestionchannelid or message.embeds == None:
                     return await ctx.reply(content="Please make sure you are in the thread attached to a suggestion!")
                 embed = message.embeds[0]
-                emb = discord.Embed(title=embed.title, description=embed.description, colour=discord.Colour.og_blurple())
-                emb.add_field(name=embed.fields[0].name, value=embed.fields[0].value)
-                emb.add_field(name=embed.fields[1].name, value=f"Yes.\nMarked as implemented by {ctx.author.mention}.")
+                emb = discord.Embed(title=embed.title, description=embed.description, colour=discord.Colour.brand_green())
+                emb.set_author(icon_url=ctx.author.display_avatar, name=ctx.author.display_name)
                 for reaction in message.reactions:
-                    emb.add_field(name=reaction.emoji, value=(reaction.count - 1), inline=False)
+                    emb.add_field(name=reaction.emoji, value=(reaction.count - 1), inline=True)
                 await message.edit(embed=emb)
                 await message.clear_reactions()
                 await ctx.reply(content="Marked as implemented!", mention_author=False)
