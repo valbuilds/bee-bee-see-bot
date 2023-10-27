@@ -89,7 +89,8 @@ class Suggestions(commands.Cog):
                     return await ctx.reply(content="Please make sure you are in the thread attached to a suggestion!")
                 embed = message.embeds[0]
                 emb = discord.Embed(title=embed.title, description=embed.description, colour=discord.Colour.brand_green())
-                emb.set_author(icon_url=ctx.author.display_avatar, name=ctx.author.display_name)
+                emb.set_author(icon_url=embed.author.icon_url, name=embed.author.name)
+                emb.set_footer(text="Suggestion marked as implemented, voting closed.")
                 for reaction in message.reactions:
                     emb.add_field(name=reaction.emoji, value=(reaction.count - 1), inline=True)
                 await message.edit(embed=emb)
