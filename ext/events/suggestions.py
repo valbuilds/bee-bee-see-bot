@@ -41,11 +41,12 @@ class Suggestions(commands.Cog):
     async def on_reaction_add(self, reaction: discord.Reaction, user: [discord.Member, discord.User]):
         if user.bot == False:
             msg = reaction.message
-            for r in msg.reactions:
-                if r != reaction:
-                    async for u in r.users():
-                        if u == user:
-                            await r.remove(u)
+            if reaction.message.channel == self.bot.get_guild(conf.guildid).get_channel(conf.suggestionchannelid):
+                for r in msg.reactions:
+                    if r != reaction:
+                        async for u in r.users():
+                            if u == user:
+                                await r.remove(u)
 
     @commands.group(breif="Suggestion commands", description="Suggestion commands")
     async def suggest(self, ctx: commands.Context):
