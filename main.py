@@ -116,5 +116,13 @@ async def gm(ctx: commands.Context):
     async with ctx.typing():
         return await ctx.reply(file=discord.File('src/gm.mp4'), mention_author=False)
 
+@bot.command(
+    breif="😩",
+    description="😩"
+)
+async def croissantcdn(ctx: commands.Context):
+    async with ctx.typing():
+        return await ctx.reply(file=discord.File('src/croissant cdn.mp4'), mention_author=False)
+
 # run bot
 bot.run(settings.Config.token, root_logger=False)
