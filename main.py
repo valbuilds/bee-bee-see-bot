@@ -108,5 +108,13 @@ async def chaos(ctx: commands.Context):
     async with ctx.typing():
         return await ctx.reply(content="[.](https://cdn.discordapp.com/attachments/1016691910158590032/1166740804728000592/help.mp4?ex=654b970c&is=6539220c&hm=1b8669e00b9a9e715f37092cc95b1ae8529e3a9d4f789c7ba987b6595e2d8289&)", mention_author=False)
 
+@bot.command(
+    breif="good morning from aaron :)))",
+    description="good morning from aaron :)))"
+)
+async def gm(ctx: commands.Context):
+    async with ctx.typing():
+        return await ctx.reply(file=discord.File('src/gm.mp4'), mention_author=False)
+
 # run bot
 bot.run(settings.Config.token, root_logger=False)
