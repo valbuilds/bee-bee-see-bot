@@ -67,7 +67,7 @@ async def sync(ctx: commands.Context):
 )
 async def bin(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file=discord.File("src/bin.mp4"), mention_author=False)
+        return await ctx.reply(file=discord.File("src/videos/bin.mp4"), mention_author=False)
 
 
 @bot.command(
@@ -77,7 +77,7 @@ async def bin(ctx: commands.Context):
 async def baguette(ctx: commands.Context):
     async with ctx.typing():
         return await ctx.reply(
-            file=discord.File("src/baguette.mp4"), mention_author=False
+            file=discord.File("src/videos/baguette.mp4"), mention_author=False
         )
 
 
@@ -98,7 +98,7 @@ async def hoo(interaction: discord.Interaction):
 async def dontmess(ctx: commands.Context):
     async with ctx.typing():
         return await ctx.reply(
-            file=discord.File("src/dontmesswithmaryam.mp4"), mention_author=False
+            file=discord.File("src/videos/dontmesswithmaryam.mp4"), mention_author=False
         )
 
 @bot.command(
@@ -114,7 +114,7 @@ async def chaos(ctx: commands.Context):
 )
 async def gm(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file=discord.File('src/gm.mp4'), mention_author=False)
+        return await ctx.reply(file=discord.File('src/videos/gm.mp4'), mention_author=False)
 
 @bot.command(
     breif="😩",
@@ -122,7 +122,7 @@ async def gm(ctx: commands.Context):
 )
 async def croissantcdn(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file=discord.File('src/croissant cdn.mp4'), mention_author=False)
+        return await ctx.reply(file=discord.File('src/videos/croissant cdn.mp4'), mention_author=False)
 
 @bot.command(
     breif="headlines from aaron :)",
@@ -130,7 +130,7 @@ async def croissantcdn(ctx: commands.Context):
 )
 async def alookattheheadlines(ctx: commands.Context):
     async with ctx.typing():
-        return await ctx.reply(file=discord.File('src/alookattheheadlines.mp4'), mention_author=False)
+        return await ctx.reply(file=discord.File('src/videos/alookattheheadlines.mp4'), mention_author=False)
 
 # run bot
 bot.run(settings.Config.token, root_logger=False)
