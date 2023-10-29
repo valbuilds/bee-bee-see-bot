@@ -124,5 +124,13 @@ async def croissantcdn(ctx: commands.Context):
     async with ctx.typing():
         return await ctx.reply(file=discord.File('src/croissant cdn.mp4'), mention_author=False)
 
+@bot.command(
+    breif="headlines from aaron :)",
+    description="headlines from aaron :)"
+)
+async def alookattheheadlines(ctx: commands.Context):
+    async with ctx.typing():
+        return await ctx.reply(file=discord.File('src/alookattheheadlines.mp4'), mention_author=False)
+
 # run bot
 bot.run(settings.Config.token, root_logger=False)
